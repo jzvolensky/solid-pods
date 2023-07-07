@@ -160,6 +160,7 @@ async function createList() {
 // ADD SOLID FILE CLIENT STUFF HERE TO DOWNLOAD 
 //solid-auth-cli needs to be sorted out.
 //const auth = require('solid-auth-cli')
+// IMPLEMENT THIS INSTEAD: https://github.com/jeff-zucker/solid-file-client/blob/master/docs/using-in-browser.md
 const FC   = require('solid-file-client')
 const fc   = new FC( auth )
 async function run(){
