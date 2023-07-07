@@ -23,11 +23,14 @@ import {
 
 import { SCHEMA_INRUPT, RDF, AS } from "@inrupt/vocab-common-rdf";
 
+import { getFile, isRawData, getContentType, getSourceUrl } from "@inrupt/solid-client";
+
 const selectorIdP = document.querySelector("#select-idp");
 const selectorPod = document.querySelector("#select-pod");
 const buttonLogin = document.querySelector("#btnLogin");
 const buttonRead = document.querySelector("#btnRead");
 const buttonCreate = document.querySelector("#btnCreate");
+const buttonDownload = document.querySelector("#buttonDownload");
 const labelCreateStatus = document.querySelector("#labelCreateStatus");
 
 buttonRead.setAttribute("disabled", "disabled");
@@ -153,6 +156,11 @@ async function createList() {
     labelCreateStatus.setAttribute("role", "alert");
   }
 }
+
+//5. Download the data to local file
+// ADD SOLID FILE CLIENT STUFF HERE TO DOWNLOAD 
+
+import solidFileClientBundle from "solid-file-client";
 
 buttonLogin.onclick = function () {
   loginToSelectedIdP();
