@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" version="1.1" creator="Your Application">
+  <wpt lat="52.084060" lon="5.163533">
+    <name>Waypoint 1</name>
+  </wpt>
+  <wpt lat="52.084096" lon="5.165105">
+    <name>Waypoint 2</name>
+  </wpt>
+  <wpt lat="52.084723" lon="5.169003">
+    <name>Waypoint 3</name>
+  </wpt>
+  <wpt lat="52.084723" lon="5.173001">
+    <name>Waypoint 4</name>
+  </wpt>
+  <wpt lat="52.084742" lon="5.176373">
+    <name>Waypoint 5</name>
+  </wpt>
+</gpx>

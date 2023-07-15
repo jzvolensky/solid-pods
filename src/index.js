@@ -30,6 +30,7 @@ const buttonLogin = document.querySelector("#btnLogin");
 const buttonRead = document.querySelector("#btnRead");
 const buttonCreate = document.querySelector("#btnCreate");
 const buttonDownload = document.querySelector("#buttonDownload");
+const buttonUpload = document.querySelector('#buttonUpload')
 const labelCreateStatus = document.querySelector("#labelCreateStatus");
 
 buttonRead.setAttribute("disabled", "disabled");
@@ -80,6 +81,46 @@ async function getMyPods() {
     selectorPod.appendChild(podOption);
   });
 }
+
+// Function to handle file upload
+async function handleFileUpload() {
+  const fileInput = document.getElementById("file-input");
+  const uploadStatus = document.getElementById("uploadStatus");
+
+  if (fileInput.files.length > 0) {
+    const file = fileInput.files[0];
+    const SELECTED_POD = document.getElementById("select-pod").value;
+
+    // Construct the file URL on the Solid Pod
+    const fileUrl = `${SELECTED_POD}Spatial%20data%20testing/location_storage/${file.name}`;
+
+    try {
+      // Upload the file to the Solid Pod
+      const response = await fetch(fileUrl, {
+        method: "PUT",
+        body: file,
+      });
+
+      if (response.ok) {
+        console.log("File uploaded successfully!");
+
+        // Update the upload status text
+        uploadStatus.textContent = `File "${file.name}" uploaded successfully.`;
+      } else {
+        console.error("Error uploading file:", response.status);
+
+        // Update the upload status text
+        uploadStatus.textContent = `Error uploading file "${file.name}": ${response.status}.`;
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error.message);
+
+      // Update the upload status text
+      uploadStatus.textContent = `Error uploading file "${file.name}": ${error.message}`;
+    }
+  }
+}
+  
 
 // 3. Create the Reading List
 async function createList() {
@@ -134,29 +175,15 @@ async function createList() {
     );
 
     labelCreateStatus.textContent = "Saved";
-
-    // Refetch the Reading List
-    savedReadingList = await getSolidDataset(readingListUrl, { fetch: fetch });
-
-    let items = getThingAll(savedReadingList);
-
-    let listcontent = "";
-    for (let i = 0; i < items.length; i++) {
-      let item = getStringNoLocale(items[i], SCHEMA_INRUPT.name);
-      if (item !== null) {
-        listcontent += item + "\n";
-      }
-    }
-
-    document.getElementById("savedtitles").value = listcontent;
   } catch (error) {
-    console.log(error);
-    labelCreateStatus.textContent = "Error" + error;
-    labelCreateStatus.setAttribute("role", "alert");
+    console.error(error.message);
   }
 }
 
-    
+buttonUpload.onclick = function () {
+  handleFileUpload();
+};
+
 buttonLogin.onclick = function () {
   loginToSelectedIdP();
 };

@@ -60,6 +60,11 @@ RDF 1.1 Primer</textarea>
       </div>
       <br>
     </div>
+    <div>
+      <input type="file" id="file-input" accept=".txt, .kml, .geojson, .gml, .gpx, .xml" />
+      <button id="buttonUpload" onclick="handleFileUpload()">Upload File</button>
+    </div>
+    <div id="uploadStatus"></div>
   </div>
   <div id="results" class="panel">
     <div class="row">

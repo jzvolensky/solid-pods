@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:FeatureCollection xmlns:gml="http://www.opengis.net/gml/3.2"
+                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                       xsi:schemaLocation="http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd">
+  <gml:featureMember>
+    <Point xmlns="http://www.opengis.net/gml/3.2">
+      <pos>5.163533 52.084060</pos>
+    </Point>
+  </gml:featureMember>
+  <gml:featureMember>
+    <Point xmlns="http://www.opengis.net/gml/3.2">
+      <pos>5.165105 52.084096</pos>
+    </Point>
+  </gml:featureMember>
+  <gml:featureMember>
+    <Point xmlns="http://www.opengis.net/gml/3.2">
+      <pos>5.169003 52.084723</pos>
+    </Point>
+  </gml:featureMember>
+  <gml:featureMember>
+    <Point xmlns="http://www.opengis.net/gml/3.2">
+      <pos>5.173001 52.084723</pos>
+    </Point>
+  </gml:featureMember>
+  <gml:featureMember>
+    <Point xmlns="http://www.opengis.net/gml/3.2">
+      <pos>5.176373 52.084742</pos>
+    </Point>
+  </gml:featureMember>
+</gml:FeatureCollection>
