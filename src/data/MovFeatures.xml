@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mf:MovingFeaturesCollection xmlns:mf="http://www.opengis.net/gml/3.2" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/movingFeature.xsd">
+  <mf:featureMember>
+    <mf:MovingPoint gml:id="point1">
+      <mf:trajectory>
+        <mf:MovingPointTrajectory>
+          <mf:position>
+            <gml:Point gml:id="point1-pos" srsName="EPSG:4326">
+              <gml:pos>5.163533 52.084060</gml:pos>
+            </gml:Point>
+          </mf:position>
+        </mf:MovingPointTrajectory>
+      </mf:trajectory>
+    </mf:MovingPoint>
+  </mf:featureMember>
+  <mf:featureMember>
+    <mf:MovingPoint gml:id="point2">
+      <mf:trajectory>
+        <mf:MovingPointTrajectory>
+          <mf:position>
+            <gml:Point gml:id="point2-pos" srsName="EPSG:4326">
+              <gml:pos>5.165105 52.084096</gml:pos>
+            </gml:Point>
+          </mf:position>
+        </mf:MovingPointTrajectory>
+      </mf:trajectory>
+    </mf:MovingPoint>
+  </mf:featureMember>
+  <mf:featureMember>
+    <mf:MovingPoint gml:id="point3">
+      <mf:trajectory>
+        <mf:MovingPointTrajectory>
+          <mf:position>
+            <gml:Point gml:id="point3-pos" srsName="EPSG:4326">
+              <gml:pos>5.169003 52.084723</gml:pos>
+            </gml:Point>
+          </mf:position>
+        </mf:MovingPointTrajectory>
+      </mf:trajectory>
+    </mf:MovingPoint>
+  </mf:featureMember>
+  <mf:featureMember>
+    <mf:MovingPoint gml:id="point4">
+      <mf:trajectory>
+        <mf:MovingPointTrajectory>
+          <mf:position>
+            <gml:Point gml:id="point4-pos" srsName="EPSG:4326">
+              <gml:pos>5.173001 52.084723</gml:pos>
+            </gml:Point>
+          </mf:position>
+        </mf:MovingPointTrajectory>
+      </mf:trajectory>
+    </mf:MovingPoint>
+  </mf:featureMember>
+  <mf:featureMember>
+    <mf:MovingPoint gml:id="point5">
+      <mf:trajectory>
+        <mf:MovingPointTrajectory>
+          <mf:position>
+            <gml:Point gml:id="point5-pos" srsName="EPSG:4326">
+              <gml:pos>5.176373 52.084742</gml:pos>
+            </gml:Point>
+          </mf:position>
+        </mf:MovingPointTrajectory>
+      </mf:trajectory>
+    </mf:MovingPoint>
+  </mf:featureMember>
+</mf:MovingFeaturesCollection>
