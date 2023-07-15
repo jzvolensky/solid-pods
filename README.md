@@ -1,14 +1,13 @@
 # Exploring Solid Pods
 
-Getting started guide by Inrupt available [here](https://docs.inrupt.com/developer-tools/javascript/client-libraries/tutorial/getting-started/)
+The starting point of this project is the getting started guide by Inrupt available [here](https://docs.inrupt.com/developer-tools/javascript/client-libraries/tutorial/getting-started/)
 
-This tutorial will evolve over time to explore spatial data in Solid Pods
+## Current functionality
+- Support for login
+- Uploading data to pod in text box form or as a file directly
 
-## Currently working on:
-
-Implementing Solid file client to manage data upload and download
-
-Creating a set of sample location data in multiple OGC standards
+  **(Do note that this is currently only possible to hardcoded locations)**
+  
 
 ## Setup and local development
 
