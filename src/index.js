@@ -158,27 +158,27 @@ async function createList() {
 
 //5. Download the data to local file
 // ADD SOLID FILE CLIENT STUFF HERE TO DOWNLOAD 
-//solid-auth-cli needs to be sorted out.
-//const auth = require('solid-auth-cli')
-// IMPLEMENT THIS INSTEAD: https://github.com/jeff-zucker/solid-file-client/blob/master/docs/using-in-browser.md
-const FC   = require('solid-file-client')
-const fc   = new FC( auth )
-async function run(){
-  let session = await auth.currentSession()
-  if (!session) { session = await auth.login() }
-  console.log(`Logged in as ${session.webId}.`)
-  if (await fc.itemExists( someUrl )) {
-      let content = await fc.readFile( someUrl )
-      // ... other file methods
-      // ... and/or other auth methods
-  }
-}
-run()
+// IMPLEMENT THIS: https://github.com/jeff-zucker/solid-file-client/blob/master/docs/using-in-browser.md
+const FC = require('solid-file-client')
+const auth = require('@inrupt/solid-client-authn-browser')
 
+//Solid-file-client browser from github
+const auth = solid.auth
+const FC = new SolidFileClient(auth)
+const popUri = 'https://solidcommunity.net/common/popup.html'
 
+// USE THE AUTH OBJECT TO LOGIN AND CHECK THE SESSION
+// USE THE FILE-CLIENT OBJECT TO READ AND WRITE
+//
+    async function run(){
+        let session = await auth.currentSession()
+        if (!session) { session = await auth.popupLogin({ popupUri:popUri }) }
+        console.log(`Logged in as ${session.webId}.`)
+        let content = await fc.readFile( someUrl )
+        console.log(content)
+    }
 
-
-
+    
 buttonLogin.onclick = function () {
   loginToSelectedIdP();
 };
