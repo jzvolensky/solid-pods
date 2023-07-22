@@ -82,7 +82,6 @@ async function getMyPods() {
   });
 }
 
-// Function to handle file upload
 async function handleFileUpload() {
   const fileInput = document.getElementById("file-input");
   const uploadStatus = document.getElementById("uploadStatus");
@@ -92,13 +91,21 @@ async function handleFileUpload() {
     const SELECTED_POD = document.getElementById("select-pod").value;
 
     // Construct the file URL on the Solid Pod
-    const fileUrl = `${SELECTED_POD}Spatial%20data%20testing/location_storage/${file.name}`;
+    const fileUrl = `${SELECTED_POD}Spatial%20data%20testing/location_storage/${encodeURIComponent(file.name)}`;
 
     try {
+      // Determine the appropriate Content-Type based on the file type
+      const contentType = file.type || "application/octet-stream"; // "application/octet-stream" is a fallback if the file type is unknown
+
+      // Create headers for the Fetch API request
+      const headers = new Headers();
+      headers.append("Content-Type", contentType);
+
       // Upload the file to the Solid Pod
       const response = await fetch(fileUrl, {
         method: "PUT",
         body: file,
+        headers: headers,
       });
 
       if (response.ok) {
