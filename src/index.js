@@ -82,6 +82,8 @@ async function getMyPods() {
   });
 }
 
+//The following async function handles the upload of non structured data
+// i.e files to a Solid Pod
 async function handleFileUpload() {
   const fileInput = document.getElementById("file-input");
   const uploadStatus = document.getElementById("uploadStatus");
@@ -91,7 +93,7 @@ async function handleFileUpload() {
     const SELECTED_POD = document.getElementById("select-pod").value;
 
     // Construct the file URL on the Solid Pod
-    const fileUrl = `${SELECTED_POD}Spatial%20data%20testing/location_storage/${encodeURIComponent(file.name)}`;
+    const fileUrl = `${SELECTED_POD}Spatial%20data%20testing/LocationFiles/${encodeURIComponent(file.name)}`;
 
     try {
       // Determine the appropriate Content-Type based on the file type
