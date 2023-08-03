@@ -29,7 +29,6 @@ const selectorPod = document.querySelector("#select-pod");
 const buttonLogin = document.querySelector("#btnLogin");
 const buttonRead = document.querySelector("#btnRead");
 const buttonCreate = document.querySelector("#btnCreate");
-const buttonDownload = document.querySelector("#buttonDownload");
 const buttonUpload = document.querySelector('#buttonUpload')
 const labelCreateStatus = document.querySelector("#labelCreateStatus");
 const buttonAddPoint = document.querySelector("#buttonAddPoint")
@@ -93,18 +92,15 @@ async function handleFileUpload() {
     const file = fileInput.files[0];
     const SELECTED_POD = document.getElementById("select-pod").value;
 
-    // Construct the file URL on the Solid Pod
     const fileUrl = `${SELECTED_POD}public/LocationFiles/${encodeURIComponent(file.name)}`;
 
     try {
-      // Determine the appropriate Content-Type based on the file type
-      const contentType = file.type || "application/octet-stream"; // "application/octet-stream" is a fallback if the file type is unknown
+      
+      const contentType = file.type || "application/octet-stream"; // "application/octet-stream" is a fallback 
 
-      // Create headers for the Fetch API request
       const headers = new Headers();
       headers.append("Content-Type", contentType);
 
-      // Upload the file to the Solid Pod
       const response = await fetch(fileUrl, {
         method: "PUT",
         body: file,
@@ -114,68 +110,19 @@ async function handleFileUpload() {
       if (response.ok) {
         console.log("File uploaded successfully!");
 
-        // Update the upload status text
         uploadStatus.textContent = `File "${file.name}" uploaded successfully.`;
       } else {
         console.error("Error uploading file:", response.status);
 
-        // Update the upload status text
         uploadStatus.textContent = `Error uploading file "${file.name}": ${response.status}.`;
       }
     } catch (error) {
       console.error("Error uploading file:", error.message);
 
-      // Update the upload status text
       uploadStatus.textContent = `Error uploading file "${file.name}": ${error.message}`;
     }
   }
 }
-  
-async function addNewPoint() {
-  const newPointCoords = "5.178000 52.084742"; // Replace with the coordinates of your new point
-
-  // GML data for the new point
-  const newPointGML = `
-    <gml:featureMember>
-      <gml:Point>
-        <gml:pos>${newPointCoords}</gml:pos>
-      </gml:Point>
-    </gml:featureMember>
-  `;
-
-  // Fetch API POST request
-  fetch('https://jzvolensky.solidcommunity.net/public/LocationFiles/GML_locations.gml', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/octet-stream', // Set the appropriate content type for GML data
-    },
-    body: `
-      <?xml version="1.0" encoding="UTF-8"?>
-      <gml:FeatureCollection xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/gml http://schemas.opengis.net/gml/3.1.1/base/gml.xsd">
-        ${newPointGML}
-      </gml:FeatureCollection>
-    `,
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.text();
-  })
-  .then(data => {
-    console.log('Point added successfully:', data);
-    // Perform any additional actions here if needed
-  })
-  .catch(error => {
-    console.error('Error adding point:', error);
-  });
-}
-
-
-
-
-
-
 
 // 3. Create the Reading List
 async function createList() {
