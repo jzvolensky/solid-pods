@@ -87,7 +87,7 @@ async function getMyPods() {
 async function handleFileUpload() {
   const fileInput = document.getElementById("file-input");
   const uploadStatus = document.getElementById("uploadStatus");
-
+  // Check if a file is selected
   if (fileInput.files.length > 0) {
     const file = fileInput.files[0];
     const SELECTED_POD = document.getElementById("select-pod").value;
@@ -95,18 +95,19 @@ async function handleFileUpload() {
     const fileUrl = `${SELECTED_POD}public/LocationFiles/${encodeURIComponent(file.name)}`;
 
     try {
-      
-      const contentType = file.type || "application/octet-stream"; // "application/octet-stream" is a fallback 
+      // "Content-Type" header is required for all uploads.
+      // "application/octet-stream" is a fallback 
+      const contentType = file.type || "application/octet-stream"; 
 
       const headers = new Headers();
       headers.append("Content-Type", contentType);
-
+      // Send the data to the Pod
       const response = await fetch(fileUrl, {
         method: "PUT",
         body: file,
         headers: headers,
       });
-
+      // Check if the upload was successful
       if (response.ok) {
         console.log("File uploaded successfully!");
 
