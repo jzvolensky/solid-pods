@@ -25,7 +25,11 @@ def haversine_distance(coord1, coord2):
 
 def get_nearby_points(geojson_url, reference_coordinates, max_distance):
     try:
-        response = requests.get(geojson_url)
+        # Construct the URL with query parameters for filtering
+        filtered_url = f"{geojson_url}?lat={reference_coordinates[1]}&lon={reference_coordinates[0]}"
+        print("Fetching data from:", filtered_url)  # Print the URL
+        
+        response = requests.get(filtered_url)
         response.raise_for_status()  # Check for HTTP errors
         geojson_data = response.json()
 
@@ -33,11 +37,13 @@ def get_nearby_points(geojson_url, reference_coordinates, max_distance):
 
         if "features" in geojson_data:
             for feature in geojson_data["features"]:
+                point_name = feature["properties"]["name"]
                 point_coordinates = feature["geometry"]["coordinates"]
+                
+                # Calculate distance using the haversine_distance function
                 distance = haversine_distance(reference_coordinates, point_coordinates)
                 
-                if distance <= max_distance:
-                    point_name = feature["properties"]["name"]
+                if distance > 0.001 and distance <= max_distance:  # Adjust the threshold as needed
                     nearby_points.append({
                         "name": point_name,
                         "coordinates": point_coordinates,
@@ -50,8 +56,8 @@ def get_nearby_points(geojson_url, reference_coordinates, max_distance):
     except requests.exceptions.RequestException as e:
         print("Error:", e)
         return None
+    
 
-# Index of the reference point (0-based index)
 reference_point_index = 2  # Point 3
 
 # Maximum distance in meters
@@ -68,7 +74,8 @@ if "features" in geojson_data and len(geojson_data["features"]) > reference_poin
     if nearby_points:
         print(f"Points within {max_distance} meters from Point {reference_point_index + 1}:")
         for point in nearby_points:
-            print(f"Name: {point['name']}, Coordinates: {point['coordinates']}, Distance: {point['distance']} meters")
+            rounded_distance = round(point['distance'], 2)  # Round to 2 decimal places
+            print(f"Name: {point['name']}, Coordinates: {point['coordinates']}, Distance: {rounded_distance} meters")
     else:
         print(f"No points found within {max_distance} meters.")
 else:
